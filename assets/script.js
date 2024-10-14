@@ -43,8 +43,8 @@ for (let i = 0; i < teamMembers.length; i++) {
   const member = teamMembers[i];
   let { name, role, email, img } = member;
   let markup =
-   `
-    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 d.flex flex-wrap">
+    `
+    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
       <div class="card bg-black d-flex flex-row align-items-center flex-wrap rounded-0">
        <img width="120" src="${img}" class="me-3">
         <div class="d-flex flex-column">
@@ -54,6 +54,32 @@ for (let i = 0; i < teamMembers.length; i++) {
         </div>
       </div>
     </div>
-  `
-  rowEl.innerHTML += markup
+  `;
+  rowEl.insertAdjacentHTML('beforeend', markup);
 }
+
+const formEl = document.querySelector('form');
+
+formEl.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  let name = document.getElementById('name').value;
+  let role = document.getElementById('role').value;
+  let img = document.getElementById('image').value;
+  let email = document.getElementById('mail').value;
+
+  const markup = `
+    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+      <div class="card bg-black d-flex flex-row align-items-center flex-wrap rounded-0">
+        <img width="120" src="${img}" class="me-3">
+        <div class="d-flex flex-column">
+          <h4 class="text-white">${name}</h4>
+          <span class="text-white">${role}</span>
+          <a href="#" class="text-decoration-none text-info">${email}</a>
+        </div>
+      </div>
+    </div>
+  `;
+
+  rowEl.insertAdjacentHTML('beforeend', markup);
+});
