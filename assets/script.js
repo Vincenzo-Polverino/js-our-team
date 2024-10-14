@@ -36,3 +36,24 @@ const teamMembers = [
     img: "img/female3.png"
   }
 ];
+
+let rowEl = document.querySelector('.row');
+
+for (let i = 0; i < teamMembers.length; i++) {
+  const member = teamMembers[i];
+  let { name, role, email, img } = member;
+  let markup =
+   `
+    <div class="col-4 d.flex flex-wrap">
+      <div class="card bg-black d-flex flex-row align-items-center flex-wrap rounded-0">
+       <img width="100" src="${img}" class="me-3">
+        <div class="d-flex flex-column">
+          <h4 class="text-white">${name}</h4>
+          <span class="text-white">${role}</span>
+          <a href="#">${email}</a>
+        </div>
+      </div>
+    </div>
+  `
+  rowEl.innerHTML += markup
+}
